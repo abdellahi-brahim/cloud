@@ -1,0 +1,15 @@
+[Unit]
+Description=Portainer Docker Management Tool
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/path/to/your/docker-compose/portainer
+ExecStart=/usr/local/bin/docker-compose -f portainer-compose.yml up -d
+ExecStop=/usr/local/bin/docker-compose -f portainer-compose.yml down
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

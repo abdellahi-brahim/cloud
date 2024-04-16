@@ -1,0 +1,15 @@
+[Unit]
+Description=NGINX Proxy Manager
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/path/to/your/docker-compose/nginx-proxy-manager
+ExecStart=/usr/local/bin/docker-compose -f nginx-proxy-manager-compose.yml up -d
+ExecStop=/usr/local/bin/docker-compose -f nginx-proxy-manager-compose.yml down
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
